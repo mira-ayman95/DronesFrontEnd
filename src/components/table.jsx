@@ -21,20 +21,22 @@ function Table(props) {
     const columns = props.columns || ["serialNum", "weight", "model"];
     return (
         <StyledTable>
-            <tr>
-                {
-                    columns.map(column => (
-                        <th>{column}</th>
-                    ))
-                }
-            </tr>
+            <thead>
+                <tr>
+                    {
+                        columns.map((column, index) => (
+                            <th key={`${index}`}>{column}</th>
+                        ))
+                    }
+                </tr>
+            </thead>
             <tbody>
                 {
-                    data.map(item => (
-                        <tr>
+                    data.map((item, index) => (
+                        <tr key={`${index}`}>
                             {
-                                columns.map(column => (
-                                    <td>{item[column]}</td>
+                                columns.map((column, index) => (
+                                    <td key={`${index}`}>{item[column]}</td>
                                 ))
                             }
                         </tr>
