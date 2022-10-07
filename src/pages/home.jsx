@@ -12,7 +12,16 @@ function Home() {
     const listAvailableDrones = async () => {
         try {
             const response = await api.get('/drone');
-            setDroneData(response.data.data);
+            let droneData = response.data.data;
+            droneData = droneData.map(drone => ({
+                ...drone,
+                action: (
+                    <Button onClick={() => navigate(`/drone/${drone.id}/medications`)}>
+                        Show Details
+                    </Button>)
+            })
+            );
+            setDroneData(droneData);
         } catch (err) {
             console.log({ err });
         }
@@ -26,7 +35,7 @@ function Home() {
         <Center>
             <h1>Drones</h1>
             <Button onClick={() => navigate('/drone/register')}>Register Drone</Button>
-            <Table data={droneData} />
+            <Table data={droneData} columns={["serialNum", "weight", "model", "action"]} message="No Drone Registered" />
         </Center >
     );
 }
