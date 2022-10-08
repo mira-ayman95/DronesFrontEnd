@@ -41,7 +41,7 @@ function LoadDroneDetails() {
         <Center>
             <h1>Drone Details</h1>
             <h2> your battery is {batteryLevel} %</h2>
-            <Button onClick={() => navigate('/drone/load/medications')}>Load Medications</Button>
+            <Button onClick={() => navigate(`/drone/${droneId}/load/medications`)}>Load Medications</Button>
             <h1>Medications Details</h1>
             <Table data={medicationsData} columns={["name", "code", "weight"]} message="No Medications Loaded to this drone" />
         </Center >
