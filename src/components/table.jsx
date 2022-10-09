@@ -16,42 +16,46 @@ const StyledTable = styled.table`
     background-color: #dddddd;
   }
 `;
-const NoDataMessage = styled.div`
+const NoDataMessage = styled.p`
     color: #00aeff;
 `
 
 function Table(props) {
     const data = props.data;
     const columns = props.columns;
+
+    if (data.length === 0) {
+        return (
+            <Center>
+                <NoDataMessage>{props.message}</NoDataMessage>
+            </Center>
+        );
+    }
+
     return (
         <StyledTable>
-            {(data.length == 0) ? <Center> <NoDataMessage> {props.message} </NoDataMessage> </Center> : (
-                <>
-                    <thead>
-                        <tr>
+            <thead>
+                <tr>
+                    {
+                        columns.map((column, index) => (
+                            <th key={`${index}`}>{column}</th>
+                        ))
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    data.map((item, index) => (
+                        <tr key={`${index}`}>
                             {
                                 columns.map((column, index) => (
-                                    <th key={`${index}`}>{column}</th>
+                                    <td key={`${index}`}>{item[column]}</td>
                                 ))
                             }
                         </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            data.map((item, index) => (
-                                <tr key={`${index}`}>
-                                    {
-                                        columns.map((column, index) => (
-                                            <td key={`${index}`}>{item[column]}</td>
-                                        ))
-                                    }
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </>
-            )}
-
+                    ))
+                }
+            </tbody>
         </StyledTable>
     );
 }

@@ -11,7 +11,7 @@ function Home() {
 
     const listAvailableDrones = async () => {
         try {
-            const response = await api.get('/drone');
+            const response = await api.get('/drones');
             let droneData = response.data.data;
             droneData = droneData.map(drone => ({
                 ...drone,
