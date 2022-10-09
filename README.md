@@ -14,3 +14,5 @@ run the following command to get the frontend up make sure that backend server i
 ```
 npm run docker:up
 ```
+
+now let's check http://localhost:5000 to try out the system.
